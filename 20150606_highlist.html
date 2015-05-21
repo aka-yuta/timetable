@@ -102,6 +102,7 @@ var hallE = [
 ["11:30",50,"保坂朱乃",],
 ["12:20",30,"吉村果歩",],
 ["12:50",30,"あぃa&かちゅ",],
+["13:20",20,"調整時間",],
 ["13:40",15,"調整時間",],
 ["13:55",50,"Honey&Honey",],
 ["14:45",30,"こけぴよ",],
@@ -110,7 +111,7 @@ var hallE = [
 ["15:50",40,"ハッピーパプリカ",],
 ["16:30",30,"Heart Up Girls",],
 ["17:00",35,"Chimo",],
-["18:05",30,"Peach sugar snow",],
+["17:35",30,"Peach sugar snow",],
 "18:05 終演",
 ];
 
@@ -129,7 +130,7 @@ body {
   float: left;
   list-style-type: none;
   padding: 0;
-  margin: 1px;
+  margin: 2px;
 }
 li {
   border-top: 1px solid #999;
@@ -147,13 +148,26 @@ li.selected {
   position: relative;
   z-index: 1;
 }
+li.disabled {
+  text-decoration: line-through;
+}
 div.filter {
-  width: 2048px;
+  width: 100%;
   position: absolute;
   background-color: grey;
   opacity: 0.25;
   -moz-opacity: 0.25;
   filter: alpha(opacity=25);
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
 }
 </style>
 <script>
@@ -163,8 +177,8 @@ $(function() {
       if (typeof(e) == "string") {
         return $("<li>" + e + "</li>");
       } else {
-        var height = e[1] * 2; // 1min = 2px
-        height += e[1] / 5 - 1; // 1border / 5min - own border
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
         return $("<li class=tt id=h" + i + "t" + j + ">" + e[0] + " (" + e[1] + ") " + e[2] + "</li>").height(height);
       }
     });
@@ -172,22 +186,36 @@ $(function() {
     record.map(function(e) { e.appendTo(table); });
     table.appendTo("#time-table");
   });
+  
+  // selected -> disabled -> release
   $(".tt").click(function() {
     var self = $(this);
     var top = self.position().top,
         height = self.height();
-    if (self.is(".selected")) {
-      self.removeClass("selected");
-      self.data("filter").remove();
-      self.removeData("filter");
+    
+    if (self.is(".disabled")) { // release
+      self.removeClass("disabled");
       localStorage.removeItem(this.id);
-    } else {
-      self.addClass("selected");
-      self.data("filter", $("<div class=filter></div>").appendTo("body").height(height + 2).css("top", top));
-      localStorage.setItem(this.id, true);
+      
+    } else if (self.is(".selected")) { // disable
+      self.removeClass("selected")
+          .addClass("disabled")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.setItem(this.id, "disabled");
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
     }
   }).each(function() {
-    if (localStorage.getItem(this.id)) {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    } else if (localStorage.getItem(this.id) == "disabled") {
+      this.click();
       this.click();
     }
   });
@@ -205,4 +233,17 @@ $(function() {
 <p style="clear: both">
 参考：
 https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
+<p>
+<input type=button value="キャッシュ削除" onclick="localStorage.clear(); location.reload();">
+
+<p>
+<table>
+<tr><th><th>芸術創造センター<th>SiX-DOG<th>DAYTRIVE<th>布池セシリアホール
+<tr><th>芸術創造センター<td><td>7 分 (550.0 m)<td>6 分 (500.0 m)<td>5 分 (400.0 m)
+<tr><th>SiX-DOG<td>7 分 (550.0 m)<td><td>7 分 (600.0 m)<td>6 分 (500.0 m)
+<tr><th>DAYTRIVE<td>6 分 (500.0 m)<td>7 分 (600.0 m)<td><td>11 分 (850.0 m)
+<tr><th>布池セシリアホール<td>5 分 (400.0 m)<td>6 分 (500.0 m) <td>11 分 (850.0 m)<td></td>
+</table>
+
 
