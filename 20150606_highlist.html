@@ -179,7 +179,9 @@ $(function() {
       } else {
         var borderWidth = 1;
         var height = e[1] * 2 - borderWidth; // 1min = 2px
-        return $("<li class=tt id=h" + i + "t" + j + ">" + e[0] + " (" + e[1] + ") " + e[2] + "</li>").height(height);
+        return $("<li class=tt>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
       }
     });
     var table = $("<ul class=hall id=hall" + i + "></ul>");
