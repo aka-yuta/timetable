@@ -53,7 +53,7 @@ var hallB = [
 ["16:15",20,"あぃa&かちゅ",],
 ["16:35",40,"Smile",],
 ["17:15",15,"さくらんぼう注意報！",],
-["17:30",50,"PPP! PiXiON",],
+["17:30",50,"PiiiiiiiN",],
 "18:20 終演",
 ];
 
@@ -86,7 +86,7 @@ var hallD = [
 ["13:30",40,"Ange☆Reve",],
 ["14:10",20,"TAKENOYAMA24",],
 ["14:30",15,"Heart Up Girls",],
-["14:45",45,"PiiiiiiiN",],
+["14:45",45,"PPP! PiXiON",],
 ["15:30",35,"Jeanne Maria",],
 ["16:05",10,"調整時間",],
 ["16:15",40,"Stella☆Beats",],
@@ -102,12 +102,13 @@ var hallE = [
 ["11:30",50,"保坂朱乃",],
 ["12:20",30,"吉村果歩",],
 ["12:50",30,"あぃa&かちゅ",],
-["13:20",20,"調整時間",],
-["13:40",15,"調整時間",],
+["13:20",30,"調整時間",],
+["13:50",5,"早川京花",],
 ["13:55",50,"Honey&Honey",],
 ["14:45",30,"こけぴよ",],
 ["15:15",20,"HunnyBunny",],
-["15:35",15,"調整時間",],
+["15:35",10,"調整時間",],
+["15:45",5,"☆わかにゃん☆",],
 ["15:50",40,"ハッピーパプリカ",],
 ["16:30",30,"Heart Up Girls",],
 ["17:00",35,"Chimo",],
@@ -149,7 +150,8 @@ li.selected {
   z-index: 1;
 }
 li.disabled {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
 }
 div.filter {
   width: 100%;
@@ -169,6 +171,9 @@ th, td {
 td:empty {
   background-color: #CCC;
 }
+.short {
+  font-size: xx-small;
+}
 </style>
 <script>
 $(function() {
@@ -179,7 +184,11 @@ $(function() {
       } else {
         var borderWidth = 1;
         var height = e[1] * 2 - borderWidth; // 1min = 2px
-        return $("<li class=tt>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+        var klass = "tt";
+        if (e[1] < 10) {
+          klass = "tt short";
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
                  .height(height)
                  .prop("id", location.pathname + "$h" + i + "t" + j);
       }
@@ -225,9 +234,10 @@ $(function() {
 </script>
 </head>
 <body>
-(5/20作成)
+(5/29update)
 <a href="http://biglove-company.com/HighLisk2015/">High Lisk 2015</a>
 <a href="https://twitter.com/HighLisk2015">Twitter</a>
+<a href="20150606_highlist_sales.html">物販タイテ</a>
 6/6開催
 <p>
 <div id="time-table">
@@ -248,4 +258,7 @@ https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-N
 <tr><th>布池セシリアホール<td>5 分 (400.0 m)<td>6 分 (500.0 m) <td>11 分 (850.0 m)<td></td>
 </table>
 
-
+<p>
+<a href="http://ameblo.jp/highlisk2015/entry-12032243797.html">6/6(土)HighLisk2015 【5/28付け告知情報】</a>
+<p>
+リストバンド交換: 09:30 名古屋市芸術創造センター １Ｆ受付
