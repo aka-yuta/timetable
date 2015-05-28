@@ -1,0 +1,374 @@
+<!doctype html>
+<head>
+<title>High Lisk 2015 Time Table</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var hallA = [
+"【芸術創造センター】",
+["11:00",15,"Jeanne Maria",],
+["11:15",10,"feel",],
+["11:25",20,"FRUITPOCHETTE",],
+["11:45",15,"PPP! PiXiON",],
+["12:00",15,"PiiiiiiiN",],
+["12:15",15,"アモレカリーナ名古屋",],
+["12:30",20,"大阪☆春夏秋冬",],
+["12:50",10,"Honey&Honey",],
+["13:00",10,"調整時間",],
+["13:10",20,"KOTO",],
+["13:30",15,"保坂朱乃",],
+["13:45",15,"Smile",],
+["14:00",20,"MKM-ZERO",],
+["14:20",25,"FunxFam",],
+["14:45",25,"Stella☆Beats",],
+["15:10",20,"Ai-Girls",],
+["15:30",25,"ひろしまMAPLE★S",],
+["15:55",10,"調整時間",],
+["16:05",20,"こけぴよ",],
+["16:25",20,"RYUKYU IDOL",],
+["16:45",15,"AiCune",],
+["17:00",20,"I'S9",],
+["17:20",25,"Ange☆Reve",],
+["17:45",25,"アイドルカレッジ",],
+["18:10",35,"アフィリア・サーガ",],
+["18:45",30,"山口活性学園",],
+["19:15",30,"nanoCUNE",],
+["19:45",30,"OS☆U",],
+"20:15 終演",
+];
+
+var hallB = [
+"【SiX-DOG】",
+["11:00",15,"Gallop+",],
+["11:15",20,"Candy☆Drops",],
+["11:35",50,"RYUKYU IDOL",],
+["12:25",50,"AiCune",],
+["13:15",10,"調整時間",],
+["13:25",40,"feel",],
+["14:05",50,"I'S9",],
+["14:55",55,"山口活性学園",],
+["15:50",10,"調整時間",],
+["16:00",15,"Star☆T",],
+["16:15",20,"あぃa&かちゅ",],
+["16:35",40,"Smile",],
+["17:15",15,"さくらんぼう注意報！",],
+["17:30",50,"PiiiiiiiN",],
+"18:20 終演",
+];
+
+var hallC = [
+"【DAYTRIVE】",
+["11:00",15,"ハッピーパプリカ",],
+["11:15",45,"TAKENOYAMA24",],
+["12:00",35,"さくらんぼう注意報！",],
+["12:35",40,"Star☆T",],
+["13:15",10,"調整時間",],
+["13:25",30,"Chimo",],
+["13:55",55,"nanoCUNE",],
+["14:50",20,"Twinkle",],
+["15:10",10,"調整時間",],
+["15:20",55,"FRUITPOCHETTE",],
+["16:15",45,"MKM-ZERO",],
+["17:00",50,"KOTO",],
+["17:50",20,"Gem☆Star",],
+"18:10 終演",
+];
+
+var hallD = [
+"【セシリアホール】",
+["11:00",10,"HunnyBunny",],
+["11:10",15,"金星☆ジュリエッタ",],
+["11:25",40,"FunxFam",],
+["12:05",40,"ひろしまMAPLE★S",],
+["12:45",10,"調整時間",],
+["12:55",35,"アイドルカレッジ",],
+["13:30",40,"Ange☆Reve",],
+["14:10",20,"TAKENOYAMA24",],
+["14:30",15,"Heart Up Girls",],
+["14:45",45,"PPP! PiXiON",],
+["15:30",35,"Jeanne Maria",],
+["16:05",10,"調整時間",],
+["16:15",40,"Stella☆Beats",],
+["16:55",10,"アモレカリーナ名古屋",],
+["17:05",40,"Ai-Girls",],
+["17:45",35,"大阪☆春夏秋冬",],
+"18:20 終演",
+];
+
+var hallE = [
+"【Vio】",
+["11:00",30,"Twinkle",],
+["11:30",50,"保坂朱乃",],
+["12:20",30,"吉村果歩",],
+["12:50",30,"あぃa&かちゅ",],
+["13:20",30,"調整時間",],
+["13:50",5,"早川京花",],
+["13:55",50,"Honey&Honey",],
+["14:45",30,"こけぴよ",],
+["15:15",20,"HunnyBunny",],
+["15:35",10,"調整時間",],
+["15:45",5,"☆わかにゃん☆",],
+["15:50",40,"ハッピーパプリカ",],
+["16:30",30,"Heart Up Girls",],
+["17:00",35,"Chimo",],
+["17:35",30,"Peach sugar snow",],
+"18:05 終演",
+];
+
+var timetable = [
+ [
+  "芸術想像1",
+  ["11:30",60,"Jeanne Maria"],
+  ["12:30",60,"FunxFam"],
+  ["13:30",60,"大阪☆春夏秋冬"],
+  ["14:30",60,"MKM-ZERO"],
+  ["15:30",60,"I'S9"],
+  ["16:30",70,"山口活性学園"],
+  ["17:40",60,"AiCune"],
+  ["18:40",60,"アイドルカレッジ"],
+  ["19:40",20,"－"],
+  ["20:00",60,"山口活性学園"],
+ ],
+ [
+  "芸術想像2A",
+  ["11:30",60,"HoneyBunny"],
+  ["12:30",60,"FunxFam"],
+  ["13:30",10,""],
+  ["13:40",50,"KOTO"],
+  ["14:30",60,"Ange  Reve"],
+  ["15:30",10,""],
+  ["15:40",60,"Ai-Girls"],
+  ["16:40",60,"こけぴよ"],
+  ["17:40",60,"I'S9"],
+  ["18:40",60,"ｱﾓﾚｶﾘｰﾅ名古屋"],
+ ],
+ [
+  "芸術想像2B",
+  ["11:30",60,"Honey&Honey"],
+ ],
+ [
+  "芸術想像3A",
+  ["11:30",60,"Gallop+"],
+  ["12:30",30,""],
+  ["13:00",60,"ひろしまMAPLE★S"],
+  ["14:00",60,"保坂朱乃"],
+  ["15:00",60,"FunxFam"],
+  ["16:00",10,""],
+  ["16:10",60,"ひろしまMAPLE★S"],
+  ["17:10",60,"あぃ♡かちゅ"],
+  ["18:10",60,"Ai-Girls"],
+  ["19:10",60,"－"],
+  ["終演後",60,"OS  U"],
+ ],
+ [
+  "芸術想像3B",
+  ["11:30",30,"－"],
+  ["12:00",60,"Candy  Drops"],
+ ],
+ [
+  "芸術想像4A",
+  ["11:30",20,"－"],
+  ["11:50",60,"feel"],
+  ["12:50",60,"RYUKYU IDOL"],
+  ["13:50",60,"AiCune"],
+  ["14:50",60,"TAKENOYAMA24"],
+  ["15:50",60,"PPP! PiXiON"],
+  ["16:50",10,""],
+  ["17:00",60,"RYUKYU IDOL"],
+  ["18:00",60,"Ange  Reve"],
+  ["19:00",60,"PiiiiiiiN"],
+ ],
+ [
+  "芸術想像4B",
+  ["11:30",60,"Heart Up Girls"],
+ ],
+ [
+  "芸術想像5A",
+  ["11:30",10,"－"],
+  ["11:40",60,"金星☆ジュリエッタ"],
+  ["12:40",60,"PPP! PiXiON"],
+  ["13:40",60,"アイドルカレッジ"],
+  ["14:40",60,"feel"],
+  ["15:40",40,""],
+  ["16:20",60,"Jeanne Maria"],
+  ["17:20",60,"Stella  Beats"],
+  ["18:20",10,""],
+  ["18:30",60,"さくらんぼう注意報！"],
+  ["19:30",30,"－"],
+  ["20:00",75,"nanoCUNE"],
+ ],
+ [
+  "芸術想像5B",
+  ["11:30",70,"－"],
+  ["12:40",60,"PiiiiiiiN"],
+  ["13:40",60,"－"],
+  ["14:40",60,"Heart Up Girls"],
+ ],
+ [
+  "芸術想像6",
+  ["11:30",30,"－"],
+  ["12:00",60,"FRUITPOCHETTE"],
+  ["13:00",65,"ｱﾓﾚｶﾘｰﾅ名古屋"],
+  ["14:00",15,""],
+  ["14:15",60,"Smile"],
+  ["15:15",60,"Stella  Beats"],
+  ["16:15",25,""],
+  ["16:40",60,"Star  T"],
+  ["17:40",60,"Smile"],
+  ["18:40",60,"大阪☆春夏秋冬"],
+ ],
+ [
+  "芸術想像7",
+  ["11:30",210,""],
+  ["15:00",90,"アフィリア・サーガ"],
+ ],
+ [
+  "DAYTRIVE1",
+  ["11:30",60,"ハッピーパプリカ"],
+  ["12:30",10,"－"],
+  ["12:40",60,"さくらんぼう注意報！"],
+  ["13:40",20,"－"],
+  ["14:00",60,"Chimo"],
+  ["15:00",15,"－"],
+  ["15:15",60,"Twinkle"],
+  ["16:15",55,"－"],
+  ["17:10",60,"MKM-ZERO"],
+  ["18:10",50,"Gem☆Star"],
+ ],
+ [
+  "DAYTRIVE2",
+  ["11:30",30,"－"],
+  ["12:00",60,"TAKENOYAMA24"],
+  ["13:00",20,"－"],
+  ["13:20",60,"Star☆T"],
+  ["14:20",40,"－"],
+  ["15:00",60,"nanoCUNE"],
+  ["16:00",20,"－"],
+  ["16:20",60,"FRUITPOCHETTE"],
+  ["17:20",40,"－"],
+  ["18:00",60,"KOTO"],
+ ],
+  hallA, hallB, hallC, hallD, hallE
+];
+</script>
+<style>
+body {
+  font-size: small;
+}
+#time-table {
+  width: 3072px;
+}
+#time-table ul {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 2px;
+}
+li {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding: 0 1ex 0 1ex;
+  margin: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #999;
+}
+li.selected {
+  background-color: orange;
+  position: relative;
+  z-index: 1;
+}
+li.disabled {
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
+}
+div.filter {
+  width: 100%;
+  position: absolute;
+  background-color: grey;
+  opacity: 0.25;
+  -moz-opacity: 0.25;
+  filter: alpha(opacity=25);
+  z-index: -1;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
+}
+.short {
+  font-size: xx-small;
+}
+</style>
+<script>
+$(function() {
+  timetable.map(function(hall, i) {
+    var record = hall.map(function(e, j) {
+      if (typeof(e) == "string") {
+        return $("<li>" + e + "</li>");
+      } else {
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
+        var klass = "tt";
+        if (e[1] <= 30) {
+            return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2].replace("－", "") + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ")<br> " + e[2].replace("－", "") + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+      }
+    });
+    var table = $("<ul class=hall id=hall" + i + "></ul>");
+    record.map(function(e) { e.appendTo(table); });
+    table.appendTo("#time-table");
+  });
+  
+  // selected -> disabled -> release
+  $(".tt").click(function() {
+    var self = $(this);
+    var top = self.position().top,
+        height = self.height();
+    
+    if (self.is(".selected")) {
+      self.removeClass("selected")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.removeItem(this.id);
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
+    }
+  }).each(function() {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    }
+  });
+});
+</script>
+</head>
+<body>
+(5/29作成) 物販タイテ
+<a href="http://biglove-company.com/HighLisk2015/">High Lisk 2015</a>
+<a href="https://twitter.com/HighLisk2015">Twitter</a>
+<a href="20150606_highlist.html">ライブタイテ</a>
+6/6開催
+<p>
+<div id="time-table">
+</div>
+<p style="clear: both">
+参考：
+https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
