@@ -1,0 +1,161 @@
+<!doctype html>
+<head>
+<title>BLC Live Vol.2 Time Table</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var hallA = [
+"10:00 開場",
+["10:30",10,"SweetMelody"],
+["10:40",20,"Gallop+"],
+["11:00",20,"Candy☆Drops"],
+["11:20",20,"金星☆ジュリエッタ"],
+["11:40",40,"Smile"],
+["12:20",15,"ちぇり→☆ボンボン"],
+["12:35",10,"調整"],
+["12:45",35,"Stella☆Beats"],
+["13:20",35,"アイドルカレッジ"],
+["13:55",25,"アモレカリーナ名古屋"],
+["14:20",35,"Ange☆Reve"],
+["14:55",10,"調整"],
+["15:05",40,"FunxFam"],
+["15:45",35,"KOTO"],
+["16:20",30,"TAKENOYAMA24"],
+["16:50",20,"Honey&Honey"],
+["17:10",15,"HoneyBunny"],
+["17:25",30,"＊ココロモヨヲ＊"],
+"17:55 終演"
+];
+
+var timetable = [
+  hallA
+];
+</script>
+<style>
+body {
+  font-size: small;
+}
+#time-table {
+  width: 2048px;
+}
+#time-table ul {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 2px;
+}
+li {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding: 0 1ex 0 1ex;
+  margin: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #999;
+}
+li.selected {
+  background-color: orange;
+  position: relative;
+  z-index: 1;
+}
+li.disabled {
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
+}
+div.filter {
+  width: 100%;
+  position: absolute;
+  background-color: grey;
+  opacity: 0.25;
+  -moz-opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
+}
+.short {
+  font-size: xx-small;
+}
+</style>
+<script>
+$(function() {
+  timetable.map(function(hall, i) {
+    var record = hall.map(function(e, j) {
+      if (typeof(e) == "string") {
+        return $("<li>" + e + "</li>");
+      } else {
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
+        var klass = "tt";
+        if (e[1] < 10) {
+          klass = "tt short";
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+      }
+    });
+    var table = $("<ul class=hall id=hall" + i + "></ul>");
+    record.map(function(e) { e.appendTo(table); });
+    table.appendTo("#time-table");
+  });
+  
+  // selected -> disabled -> release
+  $(".tt").click(function() {
+    var self = $(this);
+    var top = self.position().top,
+        height = self.height();
+    
+    if (self.is(".disabled")) { // release
+      self.removeClass("disabled");
+      localStorage.removeItem(this.id);
+      
+    } else if (self.is(".selected")) { // disable
+      self.removeClass("selected")
+          .addClass("disabled")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.setItem(this.id, "disabled");
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
+    }
+  }).each(function() {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    } else if (localStorage.getItem(this.id) == "disabled") {
+      this.click();
+      this.click();
+    }
+  });
+});
+</script>
+</head>
+<body>
+(5/29update)
+<a href="http://ameblo.jp/biglovecompany/entry-12026728151.html">BLC Live Vol.2</a>
+<a href="https://twitter.com/2014blc">Twitter</a>
+6/7開催
+<p>
+<div id="time-table">
+</div>
+<p style="clear: both">
+参考：
+https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
+<p>
+<input type=button value="キャッシュ削除" onclick="localStorage.clear(); location.reload();">
+
