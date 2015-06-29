@@ -1,0 +1,287 @@
+<!doctype html>
+<head>
+<title>アイドル横丁夏まつり!!</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+var hallA = [
+"野外",
+["12:00",10,"じぇるの!"],
+["12:10",10,"8 princess"],
+["12:20",15,"SiAM&POPTUNe"],
+["12:35",15,"Fun×Fam"],
+["12:50",60,"CLEAR'S"],
+["13:50",10,"ディア☆"],
+["14:00",15,"愛乙女☆DOLL"],
+["14:15",10,"調整"],
+["14:25",15,"TPD DASH!!"],
+["14:40",10,"GEM"],
+["14:50",15,"妄想キャリブレーション"],
+["15:05",10,"大阪☆春夏秋冬"],
+["15:15",10,"山口活性学園"],
+["15:25",15,"Cheeky Parade"],
+["15:40",15,"Especia"],
+["15:55",25,"調整"],
+["16:20",15,"バンドじゃないもん！"],
+["16:35",15,"アモレカリーナ"],
+["16:50",10,"ぱっきゃまらんど"],
+["17:00",10,"ICE☆PASTEL"],
+["17:10",10,"スト生 e-Street'15選抜"],
+["17:20",10,"dela"],
+["17:30",10,"choco☆milQ"],
+["17:40",10,"RYUKYU IDOL"],
+["17:50",10,"Maria"],
+["18:00",10,"Stella☆Beats"],
+["18:10",15,"アイドルネッサンス"],
+["18:25",15,"調整"],
+["18:40",10,"stereo osaka"],
+["18:50",10,"stereo tokyo"],
+["19:00",10,"赤マルダッシュ☆"],
+["19:10",10,"虹のコンキスタドール"],
+["19:20",10,"わーすた"],
+["19:30",15,"つりビット"],
+["19:45",15,"Ange☆Reve"],
+["20:00",20,"drop"],
+"20:20 終演",
+];
+
+var hallB = [
+"テント",
+["12:00",30,"開場"],
+["12:30",15,"メイドカフェHoney Honey"],
+["12:45",15,"ぱっきゃまらんど"],
+["13:00",15,"RYUKYU IDOL"],
+["13:15",20,"sora tob sakana"],
+["13:35",10,"スト生 e-Street'15選抜"],
+["13:45",10,"じぇる の！"],
+["13:55",10,"dela"],
+["14:05",10,"ICE☆PASTEL"],
+["14:15",10,"ライムベリー"],
+["14:25",15,"Stereo Tokyo"],
+["14:40",15,"Stereo Osaka"],
+["14:55",15,"むすびズム"],
+["15:10",10,"ぷちぱすぽ☆"],
+["15:20",15,"choco☆milQ"],
+["15:35",10,"SiAM&POPTUNe"],
+["15:45",10,"ディア☆"],
+["15:55",25,"調整"],
+["16:20",10,"赤マルダッシュ☆"],
+["16:30",15,"Stella☆Beats"],
+["16:45",10,"TPD DASH!!"],
+["16:55",20,"FYT"],
+["17:15",15,"8 princess"],
+["17:30",20,"つばさFly"],
+["17:50",15,"調整"],
+["18:05",20,"神宿"],
+["18:25",20,"ジュネス☆プリンセス"],
+["18:45",15,"Maria"],
+["19:00",20,"PassCode"],
+["19:20",20,"FRUITPOCHETTE"],
+["19:40",20,"PiiiiiiiN"],
+"20:00 終演"
+];
+
+var hallC = [
+"メイン",
+["12:00",20,"開場"],
+["12:20",10,"水着で体操第一"],
+["12:30",05,"iDOL Street ストリート生 e-Street'15選抜"],
+["12:35",05,"ぷちぱすぽ☆"],
+["12:40",05,"むすびズム"],
+["12:45",05,"dela"],
+["12:50",05,"TPD DASH!"],
+["12:55",05,"FYT"],
+["13:00",05,"赤マルダッシュ☆"],
+["13:05",05,"KOTO"],
+["13:10",05,"調　整"],
+["13:15",10,"PiiiiiiiN"],
+["13:25",10,"Cupitron"],
+["13:35",10,"Especia"],
+["13:45",10,"Fun×Fam"],
+["13:55",10,"チャンプルーガールズ"],
+["14:05",10,"調　整"],
+["14:15",05,"アモレカリーナ"],
+["14:20",15,"吉田凜音"],
+["14:35",10,"FRUITPOCHETTE"],
+["14:45",10,"PassCode"],
+["14:55",05,"（吉田凜音×小田柚葉×藤本那歩"],
+["15:00",10,"CLEAR'S"],
+["15:10",15,"drop"],
+["15:25",15,"つりビット"],
+["15:40",15,"Ange☆Reve"],
+["15:55",25,"東京おとめ太鼓（バルコニー）"],
+["16:20",05,"中3コラボ】"],
+["16:25",15,"わーすた"],
+["16:40",15,"虹のコンキスタドール"],
+["16:55",15,"アイドルネッサンス"],
+["17:10",05,"高２コラボ】"],
+["17:15",15,"ANNA☆S"],
+["17:30",15,"大阪☆春夏秋冬"],
+["17:45",05,"コラボ】大阪☆春夏秋冬×ANNA☆S"],
+["17:50",20,"GEM"],
+["18:10",20,"ベイビーレイズJAPAN"],
+["18:30",15,"調整"],
+["18:45",20,"バンドじゃないもん！"],
+["19:05",20,"山口活性学園"],
+["19:25",20,"愛乙女☆DOLL"],
+["19:45",20,"妄想キャリブレーション"],
+["20:05",10,"愛乙女★DOLL×妄想キャリ"],
+["20:15",25,"Cheeky Parade"],
+["20:40",20,"ALLCAST ENDING】"],
+"21:00 終演"
+];
+
+var hallD = [
+"DJブース",
+["12:00",30,"pandakeiko"],
+["12:30",20,"葉月"],
+["12:50",20,"BPM15Q"],
+["13:10",30,"Nachu"],
+["13:40",20,"ANNA☆S"],
+["14:00",20,"校庭カメラガール"],
+["14:20",30,"ぱいぱいでか美"],
+["14:50",10,"8mm"],
+["15:00",10,"塚本舞from夏の魔物"],
+["15:10",20,"KOTO"],
+["15:30",30,"BPM15Q"],
+["16:00",20,"おやすみホログラム"],
+["16:20",20,"Cupitron"],
+["16:40",30,"BPM15Q"],
+["17:10",20,"ライムベリー"],
+["17:30",20,"吉田凜音"],
+["17:50",30,"こまゆか"],
+["18:20",20,"はっちゃけ隊from PASSPO☆"],
+["18:40",20,"おっPサンバ"],
+"19:00 終演"
+];
+
+var timetable = [
+  hallA, hallB, hallC, hallD
+];
+</script>
+<style>
+body {
+  font-size: small;
+}
+#time-table {
+  width: 2048px;
+}
+#time-table ul {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 2px;
+}
+li {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding: 0 1ex 0 1ex;
+  margin: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #999;
+}
+li.selected {
+  background-color: orange;
+  position: relative;
+  z-index: 1;
+}
+li.disabled {
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
+}
+div.filter {
+  width: 100%;
+  position: absolute;
+  background-color: grey;
+  opacity: 0.25;
+  -moz-opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
+}
+.short {
+  font-size: xx-small;
+}
+</style>
+<script>
+$(function() {
+  timetable.map(function(hall, i) {
+    var record = hall.map(function(e, j) {
+      if (typeof(e) == "string") {
+        return $("<li>" + e + "</li>");
+      } else {
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
+        var klass = "tt";
+        if (e[1] < 10) {
+          klass = "tt short";
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+      }
+    });
+    var table = $("<ul class=hall id=hall" + i + "></ul>");
+    record.map(function(e) { e.appendTo(table); });
+    table.appendTo("#time-table");
+  });
+  
+  // selected -> disabled -> release
+  $(".tt").click(function() {
+    var self = $(this);
+    var top = self.position().top,
+        height = self.height();
+    
+    if (self.is(".disabled")) { // release
+      self.removeClass("disabled");
+      localStorage.removeItem(this.id);
+      
+    } else if (self.is(".selected")) { // disable
+      self.removeClass("selected")
+          .addClass("disabled")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.setItem(this.id, "disabled");
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
+    }
+  }).each(function() {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    } else if (localStorage.getItem(this.id) == "disabled") {
+      this.click();
+      this.click();
+    }
+  });
+});
+</script>
+</head>
+<body>
+<a href="http://idolyokocho.com/summerfes2015/">アイドル横丁夏祭り</a>
+7/5開催
+<p>
+<div id="time-table">
+</div>
+<p style="clear: both">
+参考：
+https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
+<p>
+<input type=button value="キャッシュ削除" onclick="localStorage.clear(); location.reload();">
