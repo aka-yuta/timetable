@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<head>
+<title>あしかがアイドルコレクション vol.2 Time Table</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+var hallA = [
+"【CLUB SOUTH BBC】",
+["09:00",60,"開演待ち",],
+["10:00",10,"渡良瀬橋43X",],
+["10:10",15,"渡良瀬橋43",],
+["10:25",15,"AKAGIDAN（物販なし）",],
+["10:40",15,"Smile♡Tomorrow",],
+["10:55",15,"ガールズq/b",],
+["11:10",15,"Lovin&S",],
+["11:25",05,"（調整）",],
+["11:30",15,"魔法少女☆りりぽむ",],
+["11:45",15,"POEM",],
+["12:00",15,"ダブルフォー",],
+["12:15",15,"ラストクエスチョン",],
+["12:30",05,"（調整）",],
+["12:35",15,"C-Style",],
+["12:50",15,"WA-Side",],
+["13:05",15,"Bashful+Pony",],
+["13:20",15,"シェリシェリー",],
+["13:35",15,"（調整）",],
+["13:50",15,"ノニエルズ",],
+["14:05",15,"少女隊",],
+["14:20",15,"キャンディzoo",],
+["14:35",15,"うさぎみく",],
+["14:50",05,"（調整）",],
+["14:55",15,"Bottom-Up!",],
+["15:10",15,"地下室と少女。",],
+["15:25",15,"S★Generation",],
+["15:40",15,"サブガール",],
+["15:55",05,"（調整）",],
+["16:00",15,"Sugary+Hug",],
+["16:15",15,"群馬CLEAR'S",],
+["16:30",15,"乙女座長☆銀河団",],
+["16:45",15,"principal!",],
+["17:00",20,"最終未来兵器mofu",],
+"17:20 終演",
+];
+
+var hallB = [
+"【大使館】",
+["09:00",150,"リストバンド引き換え",],
+["11:30",20,"AKAGIDAN",],
+["11:50",15,"Bottom-Up!",],
+["12:05",15,"うさぎみく",],
+["12:20",15,"地下室と少女。",],
+["12:35",15,"S★Generation",],
+["12:50",15,"サブガール",],
+["13:05",05,"（調整）",],
+["13:10",15,"群馬CLEAR'S",],
+["13:25",15,"乙女座長☆銀河団",],
+["13:40",15,"principal!",],
+["13:55",15,"Sugary+Hug",],
+["14:10",05,"（調整）",],
+["14:15",15,"POEM",],
+["14:30",15,"ダブルフォー",],
+["14:45",15,"ラストクエスチョン",],
+["15:00",15,"最終未来兵器mofu",],
+["15:15",15,"（調整）",],
+["15:30",15,"Lovin&S",],
+["15:45",15,"魔法少女☆りりぽむ",],
+["16:00",15,"シェリシェリー",],
+["16:15",15,"Bashful+Pony",],
+["16:30",05,"（調整）",],
+["16:35",15,"C-Style",],
+["16:50",15,"WA-Side",],
+["17:05",15,"ノニエルズ",],
+["17:20",15,"少女隊",],
+["17:35",05,"（調整）",],
+["17:40",15,"ガールズq/b",],
+["17:55",20,"Smile♡Tomorrow",],
+["18:15",20,"キャンディzoo",],
+["18:35",25,"渡良瀬橋43",],
+"19:00 終演",
+];
+
+var timetable = [
+  hallA, hallB
+];
+</script>
+<style>
+body {
+  font-size: small;
+}
+#time-table {
+  width: 2048px;
+}
+#time-table ul {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 2px;
+}
+li {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding: 0 1ex 0 1ex;
+  margin: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #999;
+}
+li.selected {
+  background-color: orange;
+  position: relative;
+  z-index: 1;
+}
+li.disabled {
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
+}
+div.filter {
+  width: 100%;
+  position: absolute;
+  background-color: grey;
+  opacity: 0.25;
+  -moz-opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
+}
+.short {
+  font-size: xx-small;
+}
+</style>
+<script>
+$(function() {
+  timetable.map(function(hall, i) {
+    var record = hall.map(function(e, j) {
+      if (typeof(e) == "string") {
+        return $("<li>" + e + "</li>");
+      } else {
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
+        var klass = "tt";
+        if (e[1] < 10) {
+          klass = "tt short";
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+      }
+    });
+    var table = $("<ul class=hall id=hall" + i + "></ul>");
+    record.map(function(e) { e.appendTo(table); });
+    table.appendTo("#time-table");
+  });
+  
+  // selected -> disabled -> release
+  $(".tt").click(function() {
+    var self = $(this);
+    var top = self.position().top,
+        height = self.height();
+    
+    if (self.is(".disabled")) { // release
+      self.removeClass("disabled");
+      localStorage.removeItem(this.id);
+      
+    } else if (self.is(".selected")) { // disable
+      self.removeClass("selected")
+          .addClass("disabled")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.setItem(this.id, "disabled");
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
+    }
+  }).each(function() {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    } else if (localStorage.getItem(this.id) == "disabled") {
+      this.click();
+      this.click();
+    }
+  });
+});
+</script>
+</head>
+<body>
+あしかがアイドルコレクション vol.2
+<a href="http://ameblo.jp/ashikaga-idol-collection/entry-12166627679.html">ameblo</a>
+<a href="https://twitter.com/ashikaga_idol">Twitter</a>
+2016.6.5（日）
+<p>
+<div id="time-table">
+</div>
+<p style="clear: both">
+参考：
+https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
+<p>
+<input type=button value="キャッシュ削除" onclick="localStorage.clear(); location.reload();">
+
