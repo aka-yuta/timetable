@@ -1,0 +1,194 @@
+<!doctype html>
+<head>
+<title>KIDS Idol Festival vol.1 Time Table</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+var hallA = [
+"【メインステージ】",
+["10:00",35,"開場",],
+["10:35",10,"ランドセルズ",],
+["10:45",10,"ハッピーパプリカ",],
+["10:55",10,"Twinkle",],
+["11:05",10,"Babykiss",],
+["11:15",05,"調整",],
+["11:20",10,"Beeすく～る",],
+["11:30",10,"2o Love Lab",],
+["11:40",10,"NKD EAST",],
+["11:50",15,"FAREWELL, MY L.u.v",],
+["12:05",10,"ダイヤモンドガールズ",],
+["12:15",05,"調整",],
+["12:20",15,"アモレカリーナ東京",],
+["12:35",15,"原宿物語",],
+["12:50",10,"渡良瀬橋43X",],
+["13:00",15,"渡良瀬橋43",],
+["13:15",05,"調整",],
+["13:20",10,"BABY FACE",],
+["13:30",15,"Task have Fun",],
+["13:45",15,"CHOCO★MILQ",],
+["14:00",10,"HANA&MOMO",],
+["14:10",15,"Si☆Stella",],
+["14:25",05,"調整",],
+["14:30",15,"遊びの時間",],
+["14:45",15,"Maria",],
+["15:00",15,"杜の都センセ→ション",],
+["15:15",15,"パクスプエラ",],
+["15:30",15,"キャンディzoo",],
+["15:45",05,"出演者コラボ",],
+"15:60 終演",
+];
+
+var hallB = [
+"【サブステージ】",
+["11:00",15,"Tokyo Kids Idol",],
+["11:15",15,"Maliee",],
+["11:30",15,"Task have Fun",],
+["11:45",15,"キャンディzoo",],
+["12:00",15,"ランドセルズ",],
+["12:15",05,"調整",],
+["12:20",15,"Sweetガール",],
+["12:35",15,"ハッピーパプリカ",],
+["12:50",15,"Beeすく～る",],
+["13:05",15,"peekaboo",],
+["13:20",20,"Twinkle",],
+["13:40",15,"METROPOLIS",],
+["13:55",15,"Tokyo Kids Idol",],
+["14:10",15,"ぼん Bom しすたぁ～ず",],
+["14:25",15,"pixie",],
+["14:40",15,"NKD EAST",],
+["14:55",15,"渡良瀬橋43",],
+"15:10 終演"
+];
+
+var timetable = [
+  hallA, hallB
+];
+</script>
+<style>
+body {
+  font-size: small;
+}
+#time-table {
+  width: 2048px;
+}
+#time-table ul {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 2px;
+}
+li {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding: 0 1ex 0 1ex;
+  margin: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #999;
+}
+li.selected {
+  background-color: orange;
+  position: relative;
+  z-index: 1;
+}
+li.disabled {
+  /* text-decoration: line-through; */
+  background-color: #70CFEE;
+}
+div.filter {
+  width: 100%;
+  position: absolute;
+  background-color: grey;
+  opacity: 0.25;
+  -moz-opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 1ex;
+}
+td:empty {
+  background-color: #CCC;
+}
+.short {
+  font-size: xx-small;
+}
+</style>
+<script>
+$(function() {
+  timetable.map(function(hall, i) {
+    var record = hall.map(function(e, j) {
+      if (typeof(e) == "string") {
+        return $("<li>" + e + "</li>");
+      } else {
+        var borderWidth = 1;
+        var height = e[1] * 2 - borderWidth; // 1min = 2px
+        var klass = "tt";
+        if (e[1] < 10) {
+          klass = "tt short";
+        }
+        return $("<li class='" + klass + "'>" + e[0] + " (" + e[1] + ") " + e[2] + "</li>")
+                 .height(height)
+                 .prop("id", location.pathname + "$h" + i + "t" + j);
+      }
+    });
+    var table = $("<ul class=hall id=hall" + i + "></ul>");
+    record.map(function(e) { e.appendTo(table); });
+    table.appendTo("#time-table");
+  });
+  
+  // selected -> disabled -> release
+  $(".tt").click(function() {
+    var self = $(this);
+    var top = self.position().top,
+        height = self.height();
+    
+    if (self.is(".disabled")) { // release
+      self.removeClass("disabled");
+      localStorage.removeItem(this.id);
+      
+    } else if (self.is(".selected")) { // disable
+      self.removeClass("selected")
+          .addClass("disabled")
+          .data("filter").remove();
+      self.removeData("filter");
+      localStorage.setItem(this.id, "disabled");
+      
+    } else { // select
+      var filter = $("<div class=filter></div>").appendTo("body").height(height).css("top", top);
+      self.addClass("selected")
+          .data("filter", filter);
+      localStorage.setItem(this.id, "selected");
+    }
+  }).each(function() {
+    // restore
+    if (localStorage.getItem(this.id) == "selected") {
+      this.click();
+    } else if (localStorage.getItem(this.id) == "disabled") {
+      this.click();
+      this.click();
+    }
+  });
+});
+</script>
+</head>
+<body>
+KIDS Idol Festival vol.1
+<a href="http://kidsidolfestival.tumblr.com">HP</a>
+2016.7.9（日）
+<p>
+<div id="time-table">
+</div>
+<p style="clear: both">
+参考：
+https://d466f9b0147d78ffaf6eb0e26696e4492a34793a.googledrive.com/host/0B_aNHPB-NpAGQjFjZ0NnNURjcFE/archive.html
+
+<p>
+<input type=button value="キャッシュ削除" onclick="localStorage.clear(); location.reload();">
+
