@@ -1,8 +1,9 @@
 <html> <body>
   <head>
 <script>
-  //doc=aaa.contentWindow.document;
-  alert(1)
+  aaa.contentWindow.onload = function(){
+  alert(2)
+  }
   </script>
   </head>
  <form method="post" action="https://idolmatsuri.jp/vote/add/"> <input name="comment"> <input name="group_id" value="352"> <input type="submit"> </form> <iframe id=aaa src="https://idolmatsuri.jp/group/W43"> </iframe> 
